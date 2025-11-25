@@ -1,4 +1,4 @@
-# node-red-contrib-slack-socket
+# node-red-contrib-slack-rtm
 
 A Node-RED node that enables real-time bi-directional communication with Slack using the **Slack RTM API (Socket Mode)**.  
 
@@ -22,7 +22,7 @@ This package is useful when building:
 ### **Using npm**
 ```bash
 cd ~/.node-red
-npm install node-red-contrib-slack-socket
+npm install node-red-contrib-slack-rtm
 ```
 ---
 # 🧩 Node Description

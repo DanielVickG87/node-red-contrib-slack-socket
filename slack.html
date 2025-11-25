@@ -1,0 +1,130 @@
+<script type="text/javascript">
+    RED.nodes.registerType('slack-socket', {
+        category: 'Slack',
+        color: "#36c5f0",
+        defaults: {
+            name: { value: "" },
+            token: { value: "", required: true },
+            appToken: { value: "", required: true }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-slack",
+        label: function () {
+            return this.name || "Slack Socket";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="slack-socket">
+    <div class="form-row">
+        <label for="node-input-name">Nombre</label>
+        <input type="text" id="node-input-name" placeholder="Slack Socket"/>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-token">Bot Token</label>
+        <input type="text" id="node-input-token">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-appToken">App Token</label>
+        <input type="text" id="node-input-appToken">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="slack-socket">
+<p>
+    <b>Slack Socket Mode Node</b> enables real-time two-way communication between Slack and Node-RED using the official Slack Bolt framework in Socket Mode.
+</p>
+
+<h3>Features</h3>
+<ul>
+    <li>Receive Slack messages, events, and interactions directly into Node-RED.</li>
+    <li>Send messages from any Node-RED flow to Slack channels or users.</li>
+    <li>No public URL, reverse proxy, or ngrok required — runs 100% locally.</li>
+    <li>Uses Slack Socket Mode (WebSocket-based) instead of HTTP endpoints.</li>
+</ul>
+
+<h3>Configuration</h3>
+<p>
+    This node requires:
+</p>
+<ul>
+    <li><b>Bot Token</b> (starts with <code>xoxb-</code>)</li>
+    <li><b>App Token</b> (starts with <code>xapp-</code> and must have <b>connections:write</b>)</li>
+</ul>
+
+<p>
+    These tokens must be generated from your Slack App configuration under:
+</p>
+<ul>
+    <li><i>OAuth & Permissions → Bot Token</i></li>
+    <li><i>App-Level Tokens → Generate Token → SCOPES: connections:write</i></li>
+</ul>
+
+<h3>Receiving Messages from Slack</h3>
+<p>
+    Any message posted in a channel where your bot is a member will be sent to the node as:
+</p>
+
+<pre>
+msg.payload = {
+    type: "message",
+    user: "U12345678",
+    text: "Hello from Slack",
+    channel: "C12345678"
+};
+</pre>
+
+<p>
+    The node outputs the payload automatically whenever Slack delivers an event.
+</p>
+
+<h3>Sending Messages to Slack</h3>
+<p>
+    To send a message from Node-RED to Slack, pass an object to the node with the following structure:
+</p>
+
+<pre>
+msg.payload = {
+    channel: "CHANNEL_ID",
+    text: "Your message content"
+};
+</pre>
+
+<p>
+    Example using a Function node:
+</p>
+
+<pre>
+msg.payload = {
+    channel: "C01ABCD23EF",    // Slack channel or user ID
+    text: "Hello from Node-RED!"
+};
+return msg;
+</pre>
+
+<p>
+    The node will deliver the message through Slack Bolt using <code>chat.postMessage()</code>.
+</p>
+
+<h3>Notes</h3>
+<ul>
+    <li>The bot must be a member of the channel where messages will be sent.</li>
+    <li>DMs can be sent using a user ID (e.g., <code>U0123456</code>).</li>
+    <li>Supports channels, groups, threads, and Socket Mode event subscriptions.</li>
+</ul>
+
+<h3>Troubleshooting</h3>
+<ul>
+    <li>If no events arrive, ensure Socket Mode is enabled in your Slack App.</li>
+    <li>Check that the Bot Token has the necessary scopes (e.g., <code>chat:write</code>).</li>
+    <li>Restart Node-RED after updating tokens.</li>
+</ul>
+
+<p>
+    This node is designed to provide a transparent, stable, and secure connection between Slack and Node-RED without exposing your local machine to the internet.
+</p>
+
+</script>

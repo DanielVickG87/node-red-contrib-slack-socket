@@ -1,0 +1,18 @@
+{
+  "name": "node-red-contrib-slack-socket",
+  "version": "1.0.0",
+  "description": "Real-time integration between Slack and Node-RED using Bolt with Socket Mode.",
+  "dependencies": {
+    "@slack/bolt": "^4.0.0",
+    "ws": "^8.15.0"
+  },
+  "node-red": {
+    "nodes": {
+      "slack-socket": "slack.js"
+    }
+  },
+  "keywords": ["node-red","node-red-node","node-red-contrib","slack"],
+  "author": "Daniel Vick",
+  "license": "MIT"
+  
+}

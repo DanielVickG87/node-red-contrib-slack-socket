@@ -1,5 +1,5 @@
 {
-  "name": "node-red-contrib-slack-socket",
+  "name": "node-red-contrib-slack-socketmode",
   "version": "1.0.0",
   "description": "Real-time integration between Slack and Node-RED using Bolt with Socket Mode.",
   "dependencies": {
@@ -11,8 +11,22 @@
       "slack-socket": "slack.js"
     }
   },
-  "keywords": ["node-red","node-red-node","node-red-contrib","slack"],
+    "keywords": [
+    "node-red",
+    "slack",
+    "slack-bot",
+    "slack-rtm",
+    "socket-mode",
+    "chatops"
+  ],
   "author": "Daniel Vick",
-  "license": "MIT"
-  
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanielVickG87/node-red-contrib-slack-socketmode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DanielVickG87/node-red-contrib-slack-socketmode/issues"
+  },
+  "homepage": "https://github.com/DanielVickG87/node-red-contrib-slack-socketmode#readme"
 }
